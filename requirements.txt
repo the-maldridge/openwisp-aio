@@ -1,0 +1,10 @@
+openwisp-controller~=0.8.4
+channels_redis~=3.1.0
+service_identity
+django-redis>=4.9.0
+django-pipeline~=2.0.0
+django-compress-staticfiles~=1.0.1b
+uwsgi
+
+# Newer versions have removed soft_unicode
+markupsafe==2.0.1
