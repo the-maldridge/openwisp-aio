@@ -47,6 +47,7 @@ RUN     python3 -m venv venv && . venv/bin/activate && \
         mkdir log
 
 FROM openwisp-pkgs as openwisp
+VOLUME /persist
 COPY conf/uwsgi.ini .
 COPY openwisp/*.py ./openwisp2/
 COPY manage.py manage.py
