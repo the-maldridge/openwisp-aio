@@ -2,8 +2,10 @@ FROM ghcr.io/void-linux/void-linux:latest-full-x86_64-musl as python3
 RUN xbps-install -Sy \
         bash \
         base-devel \
+        libffi \
         libffi-devel \
         libgdal \
+        libjpeg-turbo \
         libjpeg-turbo-devel \
         libspatialite \
         nginx \
@@ -14,7 +16,8 @@ RUN xbps-install -Sy \
         redis \
         tini \
         vsv \
-        zlib-devel
+        zlib-devel && \
+        rm -rf /var/cache/xbps
 
 RUN useradd \
         --comment "OpenWISP Unprivileged User" \
@@ -41,7 +44,7 @@ FROM python3 as openwisp-pkgs
 USER _openwisp
 WORKDIR /opt/openwisp
 COPY requirements.txt .
-RUN     python3 -m venv venv && . venv/bin/activate && \
+RUN python3 -m venv venv && . venv/bin/activate && \
         pip install setuptools wheel attrs && \
         pip install -r requirements.txt && \
         mkdir log
