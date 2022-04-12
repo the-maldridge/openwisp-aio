@@ -128,14 +128,8 @@ TEMPLATES = [
     },
 ]
 
-# Run celery in eager mode using in-memory broker while running tests
-if not TESTING:
-    CELERY_TASK_ACKS_LATE = True
-    CELERY_BROKER_URL = 'redis://localhost:6379/3'
-else:
-    CELERY_TASK_ALWAYS_EAGER = True
-    CELERY_TASK_EAGER_PROPAGATES = True
-    CELERY_BROKER_URL = 'memory://'
+CELERY_TASK_ACKS_LATE = True
+CELERY_BROKER_URL = 'redis://localhost:6379/3'
 
 # Workaround for stalled migrate command
 CELERY_BROKER_TRANSPORT_OPTIONS = {
@@ -298,3 +292,7 @@ STATICFILES_STORAGE = 'openwisp2.storage.CompressStaticFilesStorage'
 # GZIP compression is handled by nginx
 BROTLI_STATIC_COMPRESSION = False
 GZIP_STATIC_COMPRESSION = False
+
+# This is not recommended, and is really only here to debug some issues with
+# running on an IP address.
+CSRF_COOKIE_SECURE = False
