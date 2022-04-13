@@ -296,3 +296,4 @@ GZIP_STATIC_COMPRESSION = False
 # This is not recommended, and is really only here to debug some issues with
 # running on an IP address.
 CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = False
