@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'django.contrib.gis',
     # all-auth
     'django.contrib.sites',
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
     'openwisp_controller.connection',
     'openwisp_notifications',
     'flat_json_widget',
+    'openwisp_ipam',
     # 'openwisp_network_topology',
     # 'openwisp_firmware_upgrader',
     # 'private_storage',
@@ -91,6 +93,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'pipeline.middleware.MinifyHTMLMiddleware'
+]
+
+AUTHENTICATION_BACKENDS = [
+    'openwisp_users.backends.UsersAuthenticationBackend',
 ]
 
 ROOT_URLCONF = 'openwisp2.urls'
@@ -288,7 +294,7 @@ LOGGING = {
 # HTML minification with django pipeline
 PIPELINE = {'PIPELINE_ENABLED': True}
 # static files minification and invalidation with django-compress-staticfiles
-STATICFILES_STORAGE = 'openwisp2.storage.CompressStaticFilesStorage'
+STATICFILES_STORAGE = 'openwisp_utils.storage.CompressStaticFilesStorage'
 # GZIP compression is handled by nginx
 BROTLI_STATIC_COMPRESSION = False
 GZIP_STATIC_COMPRESSION = False
